@@ -5,96 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nearby Temples Directory</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS to smoothly handle showing information blocks on click */
+        .temple-details-block {
+            display: none; /* Hidden by default when page loads */
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-top: 5px solid #d15f00;
+            margin-top: 30px;
+            scroll-margin-top: 20px;
+        }
+        .temple-details-block:target {
+            display: block;
+        }
+
+        .history-text {
+            white-space: pre-line;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        /* Beautiful styling for the new bulletproof Map Action Button */
+        .map-btn {
+            display: inline-block;
+            background-color: #d15f00;
+            color: white;
+            text-decoration: none;
+            padding: 14px 24px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+            transition: background 0.2s, transform 0.2s;
+            margin-top: 10px;
+        }
+
+        .map-btn:hover {
+            background-color: #a84c00;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Top Navigation Heading Banner -->
     <header>
         <h1>Explore Nearby Temples</h1>
-        <p>Click on any temple to view its history and map location</p>
+        <p>Click on any temple card below to view its history and layout details</p>
     </header>
 
-    <!-- Main Webpage Content Container Layout -->
     <main class="container">
         
-        <!-- SECTION 1: THE TWO TEMPLE CARDS GRID DISPLAY -->
+        <!-- SECTION 1: THE TWO CLICKABLE TEMPLE CARDS -->
         <section class="temple-grid">
-             <!-- TEMPLE CARD 1: SHREE PARLESHWAR MANDIR -->
-            <div class="temple-card" 
-                 onclick="showDetails(this)"
-                 data-title="Parleshwar Mandir" 
-                 data-history="The temple features a sprawling, clean courtyard and is divided into multi-deity sections:
-
-                 • Lord Shiva: The main shrine houses a Swayambhu (self-manifested) Shiva Linga, accompanied by an idol of Goddess Uma (Parvati) right behind it.
-                 • Lord Ganesha: A primary attraction within the complex, featuring a large, beautiful alloy-based Ganesha idol that captures great devotion from locals.
-
-                 Timings:
-                 • Morning Darshan: 5:30 AM to 12:00 PM
-                 • Evening Darshan: 3:30 PM to 10:00 PM
-                 • Evening Aarti: 7:30 PM."
-                 data-map="<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.1095326829636!2d72.8444311752061!3d19.10285018210729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9b5c8fa60e7%3A0x9850870b31d9853d!2sShri%20Parleshwar%20Temple!5e0!3m2!1sen!2sin!4v1779094108214!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>">
-                <img src="temple1.jpeg" alt="Parleshwar Mandir">
-                <h3>Parleshwar Mandir</h3>
-            </div>
             
-            <!-- TEMPLE CARD 2: SHREE PIMPLESHWAR MAHADEV MANDIR -->
-            <div class="temple-card" 
-                 onclick="showDetails(this)"
-                 data-title="Pimpleshwar Mandir" 
-                 data-history="The temple has served as a central community cornerstone for over 60 years. Alongside the primary deity Lord Shiva, it also houses a shrine for Lord Shanishwar (Shani Dev). Devotees highly revere it for its peaceful spiritual energy and powerful presence during standard rituals.
-
-                 Timings:
-                 • Darshan timing: 5:00 AM to 10:00 PM every day
-                 • Morning Aarti: 6:30 AM to 7:00 AM
-                 • Evening Aarti: 7:00 PM to 7:30 PM"
-                 data-map="https://google.com">
-                <img src="temple2.jpeg" alt="Pimpleshwar Mandir">
-                <h3>Pimpleshwar Mandir</h3>
-            </div>
+            <!-- CARD 1 LINK (Points to #parleshwar) -->
+            <a href="#parleshwar" style="text-decoration: none; color: inherit;">
+                <div class="temple-card">
+                    <img src="temple1.jpeg" alt="Parleshwar Mandir">
+                    <h3>Parleshwar Mandir</h3>
+                </div>
+            </a>
+            
+            <!-- CARD 2 LINK (Points to #pimpleshwar) -->
+            <a href="#pimpleshwar" style="text-decoration: none; color: inherit;">
+                <div class="temple-card">
+                    <img src="temple2.jpeg" alt="Pimpleshwar Mandir">
+                    <h3>Pimpleshwar Mandir</h3>
+                </div>
+            </a>
             
         </section>
 
-        <!-- SECTION 2: DYNAMIC DETAILS PANEL (Hidden completely at start) -->
-        <section id="details-section" class="details-box hidden">
-            <!-- Dynamic Heading element targeted via JS -->
-            <h2 id="dynamic-title">Temple Name</h2>
-            
-            <!-- Dynamic History text container layout -->
-            <div id="dynamic-history" style="white-space: pre-line; line-height: 1.6; margin-bottom: 25px; font-size: 1.1rem; color: #444;">
-                Temple history text layout string dumps here.
+        <!-- SECTION 2: PARLESHWAR MANDIR DETAILS -->
+        <section id="parleshwar" class="temple-details-block">
+            <h2>Parleshwar Mandir</h2>
+            <div class="history-text">
+                The temple features a sprawling, clean courtyard and is divided into multi-deity sections:
+
+                • Lord Shiva: The main shrine houses a Swayambhu (self-manifested) Shiva Linga, accompanied by an idol of Goddess Uma (Parvati) right behind it.
+                • Lord Ganesha: A primary attraction within the complex, featuring a large, beautiful alloy-based Ganesha idol that captures great devotion from locals.
+
+                Timings:
+                • Morning Darshan: 5:30 AM to 12:00 PM
+                • Evening Darshan: 3:30 PM to 10:00 PM
+                • Evening Aarti: 7:30 PM.
             </div>
             
-            <!-- Dynamic Map element structure -->
-            <h3>Location Map</h3>
-            <div class="map-container">
-                <!-- Safe, robust iframe layout that updates just the URL attribute parameter -->
-                <iframe id="dynamic-iframe" src="" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <h3>Location Map & Navigation</h3>
+            <p style="color: #666; margin-bottom: 15px;">Click the button below to view this temple directly on Google Maps and get instant driving or walking directions:</p>
+            
+            <!-- BULLETPROOF LINK: Opens official Google Maps place instantly -->
+            <a href="https://google.com" target="_blank" class="map-btn">
+                📍 Open Map & Get Directions
+            </a>
+        </section>
+
+        <!-- SECTION 3: PIMPLESHWAR MANDIR DETAILS -->
+        <section id="pimpleshwar" class="temple-details-block">
+            <h2>Pimpleshwar Mandir</h2>
+            <div class="history-text">
+                The temple has served as a central community cornerstone for over 60 years. Alongside the primary deity Lord Shiva, it also houses a shrine for Lord Shanishwar (Shani Dev). Devotees highly revere it for its peaceful spiritual energy and powerful presence during standard rituals.
+
+                Timings:
+                • Darshan timing: 5:00 AM to 10:00 PM every day
+                • Morning Aarti: 6:30 AM to 7:00 AM
+                • Evening Aarti: 7:00 PM to 7:30 PM
             </div>
+            
+            <h3>Location Map & Navigation</h3>
+            <p style="color: #666; margin-bottom: 15px;">Click the button below to view this temple directly on Google Maps and get instant driving or walking directions:</p>
+            
+            <!-- BULLETPROOF LINK: Opens official Google Maps place instantly -->
+            <a href="https://google.com" target="_blank" class="map-btn">
+                📍 Open Map & Get Directions
+            </a>
         </section>
         
     </main>
 
-    <!-- SECTION 3: UNBREAKABLE LOGIC CONTROL SCRIPT -->
-    <script>
-        function showDetails(cardElement) {
-            // 1. Fetch text data directly from the clicked grid item boundaries
-            const title = cardElement.getAttribute('data-title');
-            const history = cardElement.getAttribute('data-history');
-            const mapUrl = cardElement.getAttribute('data-map');
-            
-            // 2. Overwrite structural container placeholders cleanly 
-            document.getElementById('dynamic-title').innerText = title;
-            document.getElementById('dynamic-history').innerText = history;
-            
-            // 3. Swap the source link on the map iframe securely
-            document.getElementById('dynamic-iframe').src = mapUrl;
-            
-            // 4. Reveal the complete display card by removing 'hidden' class style
-            document.getElementById('details-section').classList.remove('hidden');
-            
-            // 5. Smoothly slide view downwards to spotlight the content block
-            document.getElementById('details-section').scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
 </body>
 </html>
