@@ -1,0 +1,84 @@
+/* Resets page spacing and defines a clean, modern font style */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5; /* Light grey backdrop */
+    color: #333; /* Dark grey text color for easier readability */
+}
+
+/* Formats the layout of the top saffron-colored banner */
+header {
+    background-color: #d15f00; /* Traditional saffron orange color */
+    color: white; /* Header text color */
+    text-align: center; /* Centers all heading text */
+    padding: 30px 10px; /* Generous breathing room above and below text */
+}
+
+/* Constrains content width on desktop monitors so text doesn't stretch too wide */
+.container {
+    max-width: 1000px;
+    margin: 30px auto; /* Centers the main layout container on the screen */
+    padding: 0 20px; /* Adds safe spacing padding on mobile screens */
+}
+
+/* Converts the section into an automatic responsive grid layout */
+.temple-grid {
+    display: grid;
+    /* Automatically fits cards into columns that are at least 250px wide */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px; /* Uniform grid spacing gap between each card */
+    margin-bottom: 40px; /* Space below the grid block */
+}
+
+/* Styles the look of individual temple clickable cards */
+.temple-card {
+    background: white;
+    border-radius: 8px; /* Smooth rounded borders */
+    overflow: hidden; /* Clips image edges to follow the card border radius */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle drop-shadow effect */
+    cursor: pointer; /* Changes mouse arrow cursor into a clickable pointer finger */
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth animation speed for hover adjustments */
+    text-align: center;
+}
+
+/* Adds interactive feedback when a user hovers over a temple card */
+.temple-card:hover {
+    transform: translateY(-5px); /* Slightly lifts the card upward on screen */
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15); /* Darkens and enlarges drop-shadow */
+}
+
+/* Ensures all temple grid images fit perfectly uniform sizes */
+.temple-card img {
+    width: 100%;
+    height: 200px; /* Fixes height dimension across all uploads */
+    object-fit: cover; /* Crops image cleanly to prevent stretching distortions */
+}
+
+/* Colors and cushions the titles sitting inside cards */
+.temple-card h3 {
+    margin: 15px 0;
+    color: #d15f00;
+}
+
+/* Styles the appearance of the bottom hidden information area */
+.details-box {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-top: 5px solid #d15f00; /* Distinct colorful top accent line */
+}
+
+/* Utility layout helper that stops an element from rendering on screen */
+.hidden {
+    display: none;
+}
+
+/* Forces the Google Map iframe display box to scale beautifully responsive */
+.map-container iframe {
+    width: 100%;
+    border: 0; /* Removes default browser borders from embedded elements */
+    border-radius: 6px;
+    margin-top: 15px;
+}
